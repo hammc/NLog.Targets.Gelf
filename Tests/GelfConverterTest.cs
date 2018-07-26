@@ -13,7 +13,8 @@ namespace NLog.Targets.Gelf.UnitTest
             [Test]
             public void ShouldCreateGelfJsonCorrectly()
             {
-                var timestamp = DateTime.Now;
+                var timestamp = DateTime.UtcNow;
+                
                 var logEvent = new LogEventInfo
                                    {
                                        Message = "Test Log Message", 
@@ -27,13 +28,14 @@ namespace NLog.Targets.Gelf.UnitTest
                 logEvent.Properties.Add("custompropertyarray", new[]{1,2,3});
 
                 var jsonObject = new GelfConverter().GetGelfJson(logEvent, "TestFacility");
+                var unixTimestamp = (int)timestamp.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
 
                 Assert.IsNotNull(jsonObject);
                 Assert.AreEqual("1.0", jsonObject.Value<string>("version"));
                 Assert.AreEqual(Dns.GetHostName(), jsonObject.Value<string>("host"));
                 Assert.AreEqual("Test Log Message", jsonObject.Value<string>("short_message"));
                 Assert.AreEqual("Test Log Message", jsonObject.Value<string>("full_message"));
-                Assert.AreEqual(timestamp, jsonObject.Value<DateTime>("timestamp"));
+                Assert.AreEqual(unixTimestamp, jsonObject.Value<int>("timestamp"));
                 Assert.AreEqual(6, jsonObject.Value<int>("level"));
                 Assert.AreEqual("TestFacility", jsonObject.Value<string>("facility"));
                 Assert.AreEqual("", jsonObject.Value<string>("file"));
