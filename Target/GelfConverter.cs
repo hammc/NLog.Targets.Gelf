@@ -40,7 +40,8 @@ namespace NLog.Targets.Gelf
             }
 
             //Construct the instance of GelfMessage
-            //See https://github.com/Graylog2/graylog2-docs/wiki/GELF "Specification (version 1.0)"
+            //See http://docs.graylog.org/en/2.4/pages/gelf.html#gelf-payload-specification
+            //Version 1.1 (11/2013)
             var gelfMessage = new GelfMessage
                                   {
                                       Version = GelfVersion,

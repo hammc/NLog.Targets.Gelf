@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace NLog.Targets.Gelf
 {
@@ -28,6 +29,7 @@ namespace NLog.Targets.Gelf
         public string ShortMessage { get; set; }
 
         [JsonProperty("timestamp")]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime Timestamp { get; set; }
 
         [JsonProperty("version")]
