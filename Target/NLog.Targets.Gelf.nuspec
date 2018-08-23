@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>NLog.Targets.Gelf</id>
-    <version>1.0.1-patch-002</version>
+    <version>1.0.1-patch002</version>
     <title>NLog.Targets.Gelf</title>
     <authors>2020 Legal</authors>
     <owners>2020 Legal</owners>
@@ -11,6 +11,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>NLog Target for GrayLog2</description>
     <summary>NLog Target for GrayLog2</summary>
-    <tags>gelf,graylog2,nlog</tags>
+    <tags>gelf graylog2 nlog</tags>
   </metadata>
 </package>
